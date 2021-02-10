@@ -50,7 +50,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   ControlInput.msg
-  CreateChannel.msg
+#  CreateChannel.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -121,7 +121,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-catkin_install_python(PROGRAMS src/control_input_aggregator.py src/channel.py
+catkin_install_python(PROGRAMS src/cia.py src/channel.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 ## Declare a C++ library

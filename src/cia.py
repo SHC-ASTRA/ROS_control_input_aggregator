@@ -4,29 +4,47 @@ from time import time
 
 
 class Channel:
-	refresh_rate = 0.2 # how long the rover should act on a control input
+	"""
+	Control Input Channel class.
+	
+	Helper class for the ControlInputAggregator(CIA).
+	This class stores information on input channels. It processes `ControlInput` messages.
+	"""
+	
+	refresh_rate = 0.2
+	"""Time in seconds before a `ControlInput` expires"""
 	
 	def __init__(self):
+		"""
+		Initializes a new Channel class. Generates default values to store `ControlInput` messages.
+		"""
 		self.heading = [0, 0]
 		self.speed_clamp = 1
 		self.urgent = False
 		self.timestamp = 0
 		
 	def process_message(self, message):
-		# Unpack all values from the received ControlInput message
+		"""
+		Unpacks all the values from a received message and stores them.
+		
+		:param message: ControlInput object
+		"""
 		self.heading = list(message.heading)
 		self.speed_clamp = message.speed_clamp
 		self.urgent = message.is_urgent
 		self.timestamp = time()
 	
 	def is_urgent(self):
+		"""
+		This function returns true if the previously received ControlInput was marked urgent.
+		"""
 		return self.is_urgent
 	
 	def is_active(self):
+		"""
+		This function returns true if the time since the previously received ControlInput is less than the specified `Channel.refresh_rate`.
+		"""
 		return time() - self.timestamp < Channel.refresh_rate
-		
-	def read(self):
-		return self.heading, self.speed_clamp
 
 
 class ControlInputAggregator():

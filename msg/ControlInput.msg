@@ -19,4 +19,7 @@ float32 speed_clamp
 # prevent the rover from driving off a cliff.
 # Future functionality will allow handling of multiple
 # urgent signals through a priority system.
+# Currently, the urgent signal being listened to
+# is randomly selected through python's dictionary
+# construction algorithm.
 bool is_urgent

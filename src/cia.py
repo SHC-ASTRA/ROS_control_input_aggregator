@@ -13,6 +13,7 @@ class Channel:
 		self.timestamp = 0
 		
 	def process_message(self, message):
+		# Unpack all values from the received ControlInput message
 		self.heading = list(message.heading)
 		self.speed_clamp = message.speed_clamp
 		self.urgent = message.is_urgent

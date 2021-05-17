@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import rospy
 from control_input_aggregator.msg import *
 from time import time
@@ -38,7 +40,7 @@ class Channel:
 		"""
 		This function returns true if the previously received ControlInput was marked urgent.
 		"""
-		return self.is_urgent
+		return self.urgent
 	
 	def is_active(self):
 		"""
